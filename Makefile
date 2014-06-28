@@ -370,6 +370,8 @@ KBUILD_CFLAGS   := -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs \
 		   -Wno-format-security \
 		   -fno-delete-null-pointer-checks \
 		   -fdiagnostics-show-option -Werror
+#KBUILD_CFLAGS   += -Wno-error=array-bounds -Wno-error=sequence-point -Wno-error=sizeof-pointer-memaccess
+KBUILD_CFLAGS   += -Wno-error=array-bounds -Wno-error=sequence-point
 
 KBUILD_AFLAGS_KERNEL :=
 KBUILD_CFLAGS_KERNEL :=
