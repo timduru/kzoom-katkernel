@@ -185,7 +185,14 @@ struct sk_buff *__skb_recv_datagram(struct sock *sk, unsigned flags,
 
 		spin_lock_irqsave(&queue->lock, cpu_flags);
 		skb_queue_walk(queue, skb) {
-			*peeked = skb->peeked;
+#if defined(CONFIG_MDM_HSIC_PM)
+			if (skb)
+#endif
+				*peeked = skb->peeked;
+#if defined(CONFIG_MDM_HSIC_PM)
+			else
+				return NULL;
+#endif
 			if (flags & MSG_PEEK) {
 				if (*off >= skb->len && skb->len) {
 					*off -= skb->len;
